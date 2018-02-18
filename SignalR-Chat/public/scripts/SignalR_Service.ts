@@ -11,17 +11,22 @@
         }
         public Announce(message: string) {
             this.hub.server.announce(message).done(function () {
-                alert("Very good");
+                console.log("very good");
             }).fail(function () {
                 console.log("I'm sorry");
             })
         }
-        public Start(message: string): void {
+
+        public GetMessage() {
+            this.hub.client.announce = function (message) {
+                console.log(message);
+            }
+        }
+        public Start(): void {
             $.connection.hub.start().done(() => {
                 console.log("polaczono");
-                this.Announce(message);
             }).fail(function () { console.log("nie poszło"); });
         }
     }
 }
-app.service('comm', Communication.CommunicationService);
+app.service('signalrService', Communication.CommunicationService);

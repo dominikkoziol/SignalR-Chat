@@ -8,16 +8,19 @@ var Communication;
         }
         CommunicationService.prototype.Announce = function (message) {
             this.hub.server.announce(message).done(function () {
-                alert("Very good");
+                console.log("very good");
             }).fail(function () {
                 console.log("I'm sorry");
             });
         };
-        CommunicationService.prototype.Start = function (message) {
-            var _this = this;
+        CommunicationService.prototype.GetMessage = function () {
+            this.hub.client.announce = function (message) {
+                console.log(message);
+            };
+        };
+        CommunicationService.prototype.Start = function () {
             $.connection.hub.start().done(function () {
                 console.log("polaczono");
-                _this.Announce(message);
             }).fail(function () { console.log("nie poszło"); });
         };
         return CommunicationService;
@@ -25,5 +28,5 @@ var Communication;
     CommunicationService.$inject = ['$rootScope'];
     Communication.CommunicationService = CommunicationService;
 })(Communication || (Communication = {}));
-app.service('comm', Communication.CommunicationService);
+app.service('signalrService', Communication.CommunicationService);
 //# sourceMappingURL=SignalR_Service.js.map
