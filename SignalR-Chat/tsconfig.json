@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [ "es5", "dom", "es2015.iterable" ],
+    "sourceMap": true,
+    "typeRoots": [ "./types" ]
+    //"references": [ "typings" ]
+  },
+  "exclude": [
+    "./types" 
+  ]
+}
